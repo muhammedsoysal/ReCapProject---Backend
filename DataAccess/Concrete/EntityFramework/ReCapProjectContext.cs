@@ -15,6 +15,7 @@ namespace DataAccess.Concrete.EntityFramework
             optionsBuilder.UseSqlServer(@" Data Source=LAPTOP-124H4QM2;database=ReCapProject;Trusted_Connection=true");
         }
         public DbSet<Car> Cars { get; set; }
+        public DbSet<CarImage> CarImages { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<User> Users { get; set; }

@@ -11,7 +11,7 @@ namespace Business.ValidationRules.FluentValidation
 
             RuleFor(c => c.DailyPrice).NotEmpty();
             RuleFor(c => c.DailyPrice).GreaterThan(0);
-            RuleFor(c => c.DailyPrice).GreaterThan(50).When(c => c.BrandId == 1);
+            RuleFor(c => c.DailyPrice).GreaterThan(50).When(c => c.BrandID== 1);
 
 
             // BrandId'si 1 olanlar en az günlük fiyatı  50 olmalı.

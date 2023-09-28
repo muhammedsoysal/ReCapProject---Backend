@@ -23,34 +23,34 @@ namespace Business.Concrete
         {
 
             _rentalDal.Add(entity);
-            return new SuccessResult(Messages.RentalAdded);
+            return new SuccessResult(Messages.SuccessAdded);
         }
 
         public IResult Delete(Rental entity)
         {
             _rentalDal.Delete(entity);
-            return new SuccessResult(Messages.RentalDeleted);
+            return new SuccessResult(Messages.SuccessDeleted);
         }
 
         public IDataResult<List<Rental>> GetAll()
         {
-            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), Messages.RentalsListed);
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), Messages.SuccessListed);
         }
 
         public IDataResult<List<Rental>> GetById(int entityId)
         {
-            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r => r.RentalID == entityId), Messages.RentalsListed);
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r => r.RentalID == entityId), Messages.SuccessListed);
         }
 
         public IDataResult<List<RentalDetailDto>> GetRentalDetailDto()
         {
-            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetailDto(), Messages.RentalsListed);
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetailDto(), Messages.SuccessListed);
         }
 
         public IResult Update(Rental entity)
         {
             _rentalDal.Update(entity);
-            return new SuccessResult(Messages.RentalUpdated);
+            return new SuccessResult(Messages.SuccessUpdated);
         }
     }
 }

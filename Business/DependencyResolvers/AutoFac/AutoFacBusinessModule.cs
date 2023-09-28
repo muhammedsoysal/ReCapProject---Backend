@@ -18,6 +18,9 @@ namespace Business.DependencyResolvers.AutoFac
 
             builder.RegisterType<CustomerManager>().As<ICustomerService>().SingleInstance();
             builder.RegisterType<EfCustomerDal>().As<ICustomerDal>().SingleInstance();
+
+            builder.RegisterType<CarImageManager>().As<ICarImageService>().SingleInstance();
+            builder.RegisterType<EfCarImage>().As<ICarImageDal>().SingleInstance();
         }
     }
 }
