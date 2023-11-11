@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Entities.Concrete;
 
 namespace Business.Constants
 {
@@ -27,5 +28,13 @@ namespace Business.Constants
         public static string findexPointMax = "Findeks Puanınız 1900";
         public static string findexPointAdd = "20 Findeks Puanı Eklendi";
         public static string SuccessfullyPaid = "Başarılı Ödeme";
+        public static string UserNotFound = "Kullanıcı Bulunamadı";
+        public static string PasswordError = "Şifre Hatalı";
+
+        public static string SuccessfulLogin = "Sisteme giriş başarılı";
+        public static string UserAlreadyExists = "Bu kullanıcı zaten mevcut";
+        public static string UserRegistered = "Kullanıcı başarıyla kaydedildi";
+        public static string AccessTokenCreated = "Access token başarıyla oluşturuldu";
+
     }
 }

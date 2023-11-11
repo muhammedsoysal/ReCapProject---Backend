@@ -9,6 +9,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Business.BusinessAspects.AutoFac;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.AutoFac.Caching;
+using Core.Aspects.AutoFac.Performance;
+using Core.Aspects.AutoFac.Transaction;
+using Core.Aspects.AutoFac.Validation;
 
 namespace Business.Concrete
 {
@@ -21,6 +27,9 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        [SecuredOperation("car.add,admin,moderator")]
+        [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
         {
             
@@ -35,7 +44,8 @@ namespace Business.Concrete
             _carDal.Delete(car);
             return new SuccessResult(Messages.SuccessDeleted);
         }
-
+        [CacheAspect] //key, value
+        [PerformanceAspect(100)]
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour == 18)
@@ -51,6 +61,16 @@ namespace Business.Concrete
                 return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTime);
             }
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
+        }
+        [TransactionScopeAspect]
+        public IResult AddTransactionalTest(Car car)
+        {
+            Add(car);
+            if (car.DailyPrice < 500)
+                throw new Exception("");
+
+            Add(car);
+            return null;
         }
 
         public IDataResult<List<CarDetailDto>> GetCarsByBrandId(int id)
